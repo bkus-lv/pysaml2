@@ -232,6 +232,11 @@ class AttributeValueBase(SamlBase):
                     lambda x: base64.encodebytes(x.encode()) if base64encode else x
                 ),
             },
+            'hexBinary': {
+                'type': _str,
+                'to_type': _str,
+                'to_text': _str,
+            },
             'anyType': {
                 'type': type(value),
                 'to_type': lambda x: x,
