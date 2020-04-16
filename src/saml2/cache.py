@@ -156,9 +156,9 @@ class Cache(object):
         """
         cni = code(name_id)
         try:
-            return list(self._db.get[cni].keys())
+            return list(self._db[cni].keys())
         except KeyError:
-            return False
+            return []
 
     def receivers(self, name_id):
         """ Another name for entities() just to make it more logic in the IdP
