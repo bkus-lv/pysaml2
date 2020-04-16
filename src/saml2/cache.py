@@ -62,7 +62,7 @@ class Cache(object):
         if not entities:
             try:
                 cni = code(name_id)
-                entities = self._db[cni].keys()
+                entities = self._db.get(cni, {}).keys()
             except KeyError:
                 return {}, []
 
@@ -99,7 +99,10 @@ class Cache(object):
         :return: The session information
         """
         cni = code(name_id)
-        (timestamp, info) = self._db[cni][entity_id]
+        try:
+            (timestamp, info) = self._db[cni][entity_id]
+        except KeyError:
+            return None
         info = info.copy()
         if check_not_on_or_after and time_util.after(timestamp):
             raise TooOld("past %s" % str(timestamp))
@@ -152,7 +155,10 @@ class Cache(object):
         :return: A possibly empty list of entity identifiers
         """
         cni = code(name_id)
-        return list(self._db[cni].keys())
+        try:
+            return list(self._db.get[cni].keys())
+        except KeyError:
+            return False
 
     def receivers(self, name_id):
         """ Another name for entities() just to make it more logic in the IdP
