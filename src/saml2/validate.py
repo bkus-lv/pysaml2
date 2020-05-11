@@ -104,13 +104,13 @@ def validate_on_or_after(not_on_or_after, slack):
 
 
 def validate_before(not_before, slack):
-    if not_before:
-        now = time_util.utc_now()
-        nbefore = calendar.timegm(time_util.str_to_time(not_before))
-        if nbefore > now + slack:
-            now_str = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime(now))
-            raise ToEarly("Can't use response yet: (now=%s + slack=%d) "
-                          "<= notbefore=%s" % (now_str, slack, not_before))
+    #if not_before:
+    #    now = time_util.utc_now()
+    #    nbefore = calendar.timegm(time_util.str_to_time(not_before))
+    #    if nbefore > now + slack:
+    #        now_str = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime(now))
+    #        raise ToEarly("Can't use response yet: (now=%s + slack=%d) "
+    #                      "<= notbefore=%s" % (now_str, slack, not_before))
     return True
 
 
